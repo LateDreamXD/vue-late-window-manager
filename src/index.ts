@@ -6,6 +6,8 @@
 import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
 import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
 
+export { version } from '../package.json';
+
 export default {
 	install(app: App, options?: UserOptions) {
 		// @ts-ignore
