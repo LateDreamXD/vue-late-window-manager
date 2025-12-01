@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./preview.png" alt="preview" width="120" height="120" align="right" />
+<img src="./preview.png" alt="preview" width="240" height="240" align="right" />
 
 # Late Window Manager for Vue 3
 [![npm](https://img.shields.io/npm/v/vue-late-window-manager?style=flat-square&logo=npm)](https://www.npmjs.com/package/vue-late-window-manager)
