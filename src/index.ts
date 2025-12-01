@@ -1,0 +1,134 @@
+/**
+ * Late Window Manager for Vue 3
+ * @license MIT
+ * @author LateDream
+ */
+import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
+import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
+
+export default {
+	install(app: App, options?: UserOptions) {
+		// @ts-ignore
+		const lateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
+		// @ts-ignore
+		const lateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
+		app.component('LateWindow', lateWindow)
+		   .component('late-window', lateWindow)
+		   .component('LateWindowManager', lateWindowManager)
+		   .component('late-window-manager', lateWindowManager)
+		   .component('LWM', lateWindowManager);
+		app.config.globalProperties.LateWindow = lateWindow;
+		app.config.globalProperties['late-window'] = lateWindow;
+		app.config.globalProperties.LateWindowManager = lateWindowManager;
+		app.config.globalProperties['late-window-manager'] = lateWindowManager;
+		app.config.globalProperties.LWM = lateWindowManager;
+
+		const state = reactive({
+			activeWindowId: null as string | null,
+			windows: [] as LateWindowState[],
+			zIndexCounter: options?.manager?.initZIndex ?? 100
+		});
+
+		app.config.globalProperties.$lwm = {
+			actions: {
+				focusWindow: (id: string) => {
+					const win = state.windows.find(w => w.id === id);
+					if (win) {
+						state.activeWindowId = id;
+						win.zIndex = state.zIndexCounter++;
+					} else
+						console.warn(`Window with id ${id} not found`);
+				},
+				closeWindow: (id: string) => {
+					state.windows = state.windows.filter(w => w.id !== id);
+					state.zIndexCounter--;
+				},
+				openWindow: (id: string, options?: LateWindowOptions) => {
+					if (state.windows.some(w => w.id === id)) {
+						state.activeWindowId = id;
+						return;
+					}
+					state.windows.push({
+						id,
+						icon: options?.icon,
+						title: options?.title ?? app.config.globalProperties.$lwm.DefaultOptions.window!.title,
+						content: options?.content,
+						isMaximized: options?.isMaximized ?? false,
+						isMinimized: options?.isMinimized ?? false,
+						position: options?.position ?? app.config.globalProperties.$lwm.DefaultOptions.window!.position,
+						size: options?.size ?? app.config.globalProperties.$lwm.DefaultOptions.window!.size,
+						closeable: options?.closeable ?? true,
+						moveable: options?.moveable ?? true,
+						maximizable: options?.maximizable ?? true,
+						minimizable: options?.minimizable ?? true,
+						zIndex: app.config.globalProperties.$lwm.DefaultOptions.manager!.initZIndex!,
+					});
+					state.activeWindowId = id;
+				},
+				maximizeWindow: (id: string) => {
+					const win = state.windows.find(w => w.id === id);
+					if (win) {
+						const max = !win.isMaximized;
+						win.moveable = !max;
+						win.isMaximized = max;
+						if (max) {
+							win.lastPosition = {
+								x: win.position!.x,
+								y: win.position!.y
+							};
+							win.lastSize = {
+								width: win.size!.width,
+								height: win.size!.height
+							};
+							win.position = {
+								x: 0,
+								y: 0
+							};
+							win.size = {
+								width: '100vw',
+								height: '100vh'
+							}
+						} else {
+							win.position = win.lastPosition;
+							win.size = win.lastSize;
+						}
+					} else
+						console.warn(`Window with id ${id} not found`);
+				},
+				minimizeWindow(id: string) {
+					const win = state.windows.find(w => w.id === id);
+					if (win) {
+						win.isMinimized = !0;
+						state.activeWindowId = null;
+					}
+				},
+				updateWindowPos(id: string, pos: { x: number; y: number }) {
+					const win = state.windows.find(w => w.id === id);
+					if (win && win.moveable) {
+						win.position = pos;
+					} else
+						console.warn(`Window with id ${id} not found`);
+				}
+			},
+			DefaultOptions: readonly({
+				window: {
+					title: 'Untitled Window',
+					position: {
+						x: 50 + (state.windows.length * 20),
+						y: 50 + (state.windows.length * 20)
+					},
+					size: {
+						width: 800,
+						height: 600
+					},
+					...options?.window
+				},
+				manager: {
+					initZIndex: 100,
+					...options?.manager
+				}
+			}),
+			State: readonly(state)
+		}
+	}
+}

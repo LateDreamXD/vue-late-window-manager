@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": true,
+
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+
+    "baseUrl": ".",
+    "paths": {
+      "vue-late-window-manager": [
+        "src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
+}

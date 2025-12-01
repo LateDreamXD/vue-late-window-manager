@@ -1,0 +1,59 @@
+{
+  "name": "vue-late-window-manager",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Late Window Manager for Vue3",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./style": "./dist/index.css"
+  },
+  "scripts": {
+    "build": "vue-tsc --noEmit && tsup",
+    "check": "vue-tsc --noEmit",
+    "postbuild": "node postbuild.cjs",
+    "test": "vite"
+  },
+  "keywords": [
+    "vue",
+    "window",
+    "windows",
+    "window-manager",
+    "lwm"
+  ],
+  "author": {
+    "name": "LateDream",
+    "url": "https://github.com/LateDreamXD"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.2",
+    "esbuild-plugin-sass": "^1.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "unplugin-vue": "^7.0.8",
+    "vite": "^7.2.6",
+    "vue": "^3",
+    "vue-tsc": "^3.1.5"
+  },
+  "peerDependencies": {
+    "vue": "^3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LateDreamXD/vue-late-window-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LateDreamXD/vue-late-window-manager/issues"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.22.0"
+}
