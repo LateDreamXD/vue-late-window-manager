@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/LateDreamXD/vue-late-window-manager/refs/heads/main/docs/preview.png" alt="preview" width="120" height="120" align="right" />
+<img src="https://github.com/LateDreamXD/vue-late-window-manager/blob/2dc495dd609cd723fb0330163402443b814ae0c0/docs/preview.png" alt="preview" width="120" height="120" align="right" />
 
 # Late Window Manager for Vue 3
 [![npm](https://img.shields.io/npm/v/vue-late-window-manager?style=flat-square&logo=npm)](https://www.npmjs.com/package/vue-late-window-manager)
