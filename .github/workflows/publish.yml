@@ -5,18 +5,26 @@ on:
     types: [created]
   workflow_dispatch:
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
+          cache: pnpm
           node-version: 22
-      - uses: pnpm/action-setup@v4
+      # Ensure npm 11.5.1 or later is installed
+      - name: Update npm
+        run: npm install -g npm@latest
       - name: install deps
         id: install
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: build
         if: steps.install.conclusion == 'success'
         id: build
@@ -25,5 +33,3 @@ jobs:
         if: steps.build.conclusion == 'success' && github.event_name == 'release'
         # https://github.com/pnpm/pnpm/issues/5894
         run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
