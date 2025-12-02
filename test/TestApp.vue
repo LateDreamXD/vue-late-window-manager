@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getCurrentInstance, h } from 'vue';
+import { h, inject } from 'vue';
 
-const $lwm = getCurrentInstance()!.appContext.config.globalProperties.$lwm;
+const $lwm = inject<LWM.Instance>('$lwm')!;
 
 $lwm.actions.openWindow('test-window', {
 	content: h('p', { style: { padding: '6px' } }, 'Hello Vue Late Window Manager!'),
