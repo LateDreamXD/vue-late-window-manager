@@ -4,7 +4,7 @@
  * @author LateDream
  */
 import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
-import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
+import type { UserOptions, LateWindowOptions, LateWindowState } from './types/';
 
 export { version } from '../package.json';
 
@@ -29,7 +29,7 @@ export default {
 			zIndexCounter: options?.manager?.initZIndex ?? 100
 		});
 
-		app.config.globalProperties.$lwm = {
+		const $lwm = {
 			actions: {
 				focusWindow: (id: string) => {
 					const win = state.windows.find(w => w.id === id);
@@ -72,14 +72,8 @@ export default {
 						win.moveable = !max;
 						win.isMaximized = max;
 						if (max) {
-							win.lastPosition = {
-								x: win.position!.x,
-								y: win.position!.y
-							};
-							win.lastSize = {
-								width: win.size!.width,
-								height: win.size!.height
-							};
+							win.lastPosition = win.position;
+							win.lastSize = win.size;
 							win.position = {
 								x: 0,
 								y: 0
@@ -98,7 +92,7 @@ export default {
 				minimizeWindow(id: string) {
 					const win = state.windows.find(w => w.id === id);
 					if (win) {
-						win.isMinimized = !0;
+						win.isMinimized = true;
 						state.activeWindowId = null;
 					}
 				},
@@ -130,5 +124,7 @@ export default {
 			}),
 			State: readonly(state)
 		}
+		app.provide('$lwm', $lwm);
+		app.config.globalProperties.$lwm = $lwm;
 	}
 }

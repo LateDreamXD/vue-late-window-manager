@@ -1,12 +1,13 @@
 import type { DeepReadonly } from 'vue';
-import type { LateWindowOptions, LateWindowState, UserOptions } from './types';
-import LateWindow from './components/Window.vue';
-import LateWindowManager from './components/WindowManager.vue';
+import { LateWindow, LateWindowManager } from './components';
+import type { LateWindowOptions, LateWindowState } from './window';
+import type { UserOptions } from './options';
 
-declare module 'vue' {
-	interface ComponentCustomProperties {
-		/** late window manager | late window 窗口管理器 */
-		$lwm: {
+declare global {
+	/** late window manager namespace | late window 窗口管理器命名空间 */
+	namespace LWM {
+		/** late window manager instance | late window 窗口管理器实例 */
+		interface Instance {
 			/** late window manager actions | late window 窗口管理器操作 */
 			actions: {
 				/** focus window | 聚焦窗口 */
@@ -23,52 +24,71 @@ declare module 'vue' {
 				updateWindowPos: (id: string, pos: { x: number, y: number }) => void;
 			};
 			/**
-			 * late window manager default options | late window 窗口管理器默认选项
-			 * @readonly
-			 */
+			* late window manager default options | late window 窗口管理器默认选项
+			* @readonly
+			*/
 			DefaultOptions: DeepReadonly<UserOptions>;
 			/**
-			 * late window manager state | late window 窗口管理器状态
-			 * @readonly
-			 */
+			* late window manager state | late window 窗口管理器状态
+			* @readonly
+			*/
 			State: DeepReadonly<{
 				/** active window id | 活动窗口 id */
 				activeWindowId: string | null;
 				/** windows list | 窗口列表 */
 				windows: LateWindowState[];
 			}>;
-		};
+		}
+		/** late window manager element namespace | late window 窗口管理器元素命名空间 */
+		namespace Element {
+			/** late window element | late window 窗口元素 */
+			type LateWindow = typeof LateWindow;
+			/** late window manager element | late window 窗口管理器元素 */
+			type LateWindowManager = typeof LateWindowManager;
+		}
+	}
+}
+
+declare module 'vue' {
+	interface ComponentCustomProperties {
+		/**
+		 * late window manager instance | late window 窗口管理器实例
+		 * @deprecated use `inject('$lwm')` instead | 请使用 `inject('$lwm')` 代替
+		 */
+		$lwm: LWM.Instance;
 
 		/**
 		 * late window element | late window 窗口元素
 		 * @alias late-window
 		 */
-		LateWindow: typeof LateWindow;
+		LateWindow: LWM.Element.LateWindow;
 		
 		/**
 		 * late window element | late window 窗口元素
 		 * @alias LateWindow
 		 */
-		'late-window': typeof LateWindow;
+		'late-window': LWM.Element.LateWindow;
 		/**
 		 * late window manager | late window 窗口管理器
 		 * @alias late-window-manager
 		 * @alias LWM
 		 */
-		LateWindowManager: typeof LateWindowManager;
+		LateWindowManager: LWM.Element.LateWindowManager;
 		/**
 		 * late window manager element | late window 窗口管理器元素
 		 * @alias LateWindowManager
 		 * @alias LWM
 		 */
-		'late-window-manager': typeof LateWindowManager;
+		'late-window-manager': LWM.Element.LateWindowManager;
 		/**
 		 * late window manager element | late window 窗口管理器元素
 		 * @alias LateWindowManager
 		 * @alias late-window-manager
 		 */
-		LWM: typeof LateWindowManager;
+		LWM: LWM.Element.LateWindowManager;
 	}
 }
 
-export { LateWindow, LateWindowManager };
+export * from './window';
+export * from './options';
+export * from './components';
