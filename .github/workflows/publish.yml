@@ -15,10 +15,14 @@ jobs:
           node-version: 22
       - uses: pnpm/action-setup@v4
       - name: install deps
+        id: install
         run: pnpm install
       - name: build
+        if: steps.install.conclusion == 'success'
+        id: build
         run: pnpm run build
       - name: publish
+        if: steps.build.conclusion == 'success' && github.event_name == 'release'
         # https://github.com/pnpm/pnpm/issues/5894
         run: pnpm publish --no-git-checks
         env:
