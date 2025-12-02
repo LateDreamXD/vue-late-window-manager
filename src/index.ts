@@ -51,17 +51,17 @@ export default {
 					state.windows.push({
 						id,
 						icon: options?.icon,
-						title: options?.title ?? app.config.globalProperties.$lwm.DefaultOptions.window!.title,
+						title: options?.title ?? $lwm.DefaultOptions.window!.title,
 						content: options?.content,
 						isMaximized: options?.isMaximized ?? false,
 						isMinimized: options?.isMinimized ?? false,
-						position: options?.position ?? app.config.globalProperties.$lwm.DefaultOptions.window!.position,
-						size: options?.size ?? app.config.globalProperties.$lwm.DefaultOptions.window!.size,
+						position: options?.position ?? $lwm.DefaultOptions.window!.position,
+						size: options?.size ?? $lwm.DefaultOptions.window!.size,
 						closeable: options?.closeable ?? true,
 						moveable: options?.moveable ?? true,
 						maximizable: options?.maximizable ?? true,
 						minimizable: options?.minimizable ?? true,
-						zIndex: app.config.globalProperties.$lwm.DefaultOptions.manager!.initZIndex!,
+						zIndex: $lwm.DefaultOptions.manager!.initZIndex!,
 					});
 					state.activeWindowId = id;
 				},

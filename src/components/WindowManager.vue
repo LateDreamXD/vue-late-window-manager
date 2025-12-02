@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
+import { inject } from 'vue';
 
-const $lwm = getCurrentInstance()!.appContext.config.globalProperties.$lwm;
+const $lwm = inject<LWM.Instance>('$lwm')!;
 
 const windows = $lwm.State.windows;
 </script>

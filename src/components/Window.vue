@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, getCurrentInstance, type DeepReadonly } from 'vue';
+import { computed, ref, inject, type DeepReadonly } from 'vue';
 import icons from '../icons';
 import type { LateWindowState } from '../types';
 
-const $lwm = getCurrentInstance()!.appContext.config.globalProperties.$lwm;
+const $lwm = inject<LWM.Instance>('$lwm')!;
 
 const props = defineProps<{
 	window: DeepReadonly<LateWindowState>
