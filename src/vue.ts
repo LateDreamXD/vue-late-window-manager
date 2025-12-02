@@ -1,5 +1,7 @@
 import type { DeepReadonly } from 'vue';
 import type { LateWindowOptions, LateWindowState, UserOptions } from './types';
+import LateWindow from './components/Window.vue';
+import LateWindowManager from './components/WindowManager.vue';
 
 declare module 'vue' {
 	interface ComponentCustomProperties {
@@ -41,30 +43,32 @@ declare module 'vue' {
 		 * late window element | late window 窗口元素
 		 * @alias late-window
 		 */
-		LateWindow: typeof import('./components/Window.vue').default;
+		LateWindow: typeof LateWindow;
 		
 		/**
 		 * late window element | late window 窗口元素
 		 * @alias LateWindow
 		 */
-		'late-window': typeof import('./components/Window.vue').default;
+		'late-window': typeof LateWindow;
 		/**
 		 * late window manager | late window 窗口管理器
 		 * @alias late-window-manager
 		 * @alias LWM
 		 */
-		LateWindowManager: typeof import('./components/WindowManager.vue').default;
+		LateWindowManager: typeof LateWindowManager;
 		/**
 		 * late window manager element | late window 窗口管理器元素
 		 * @alias LateWindowManager
 		 * @alias LWM
 		 */
-		'late-window-manager': typeof import('./components/WindowManager.vue').default;
+		'late-window-manager': typeof LateWindowManager;
 		/**
 		 * late window manager element | late window 窗口管理器元素
 		 * @alias LateWindowManager
 		 * @alias late-window-manager
 		 */
-		LWM: typeof import('./components/WindowManager.vue').default;
+		LWM: typeof LateWindowManager;
 	}
 }
+
+export { LateWindow, LateWindowManager };

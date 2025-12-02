@@ -10,9 +10,7 @@ export { version } from '../package.json';
 
 export default {
 	install(app: App, options?: UserOptions) {
-		// @ts-ignore
 		const lateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
-		// @ts-ignore
 		const lateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
 		app.component('LateWindow', lateWindow)
 		   .component('late-window', lateWindow)
