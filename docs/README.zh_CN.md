@@ -37,10 +37,13 @@ app.mount('#app')
 `App.vue`
 ```html
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, inject } from 'vue';
 
 // 获取 LWM 实例
-const $lwm = getCurrentInstance()!.appContext.config.globalProperties.$lwm;
+const $lwm = inject<LWM.Instance>('$lwm')!;
+
+// **不推荐** 或使用 `globalProperties`
+// const $lwm = getCurrentInstance()!.appContext.config.globalProperties.$lwm;
 
 // 打开测试窗口
 $lwm.actions.openWindow('test-window', {
