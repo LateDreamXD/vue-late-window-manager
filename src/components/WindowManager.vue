@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject } from 'vue';
+import { inject, computed } from 'vue';
 
 const $lwm = inject<LWM.Instance>('$lwm')!;
 
-const windows = $lwm.State.windows;
+const windows = computed(() => $lwm.State.windows);
 </script>
 
 <template>
