@@ -36,6 +36,7 @@ export default {
 					if (win) {
 						state.activeWindowId = id;
 						win.zIndex = state.zIndexCounter++;
+						win.isMinimized = false;
 					} else
 						console.warn(`Window with id ${id} not found`);
 				},
@@ -45,7 +46,7 @@ export default {
 				},
 				openWindow: (id: string, options?: LateWindowOptions) => {
 					if (state.windows.some(w => w.id === id)) {
-						state.activeWindowId = id;
+						$lwm.actions.focusWindow(id);
 						return;
 					}
 					state.windows.push({
