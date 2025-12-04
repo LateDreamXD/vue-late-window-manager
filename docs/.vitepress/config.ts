@@ -10,6 +10,7 @@ export default defineConfig({
 	title: "Vue Late Window Manager",
 	description: "Late Window Manager for Vue3",
 
+	base: '/vue-late-window-manager/',
 	lastUpdated: true,
 	cleanUrls: true,
 	metaChunk: true,

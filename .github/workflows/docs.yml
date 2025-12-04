@@ -32,6 +32,8 @@ jobs:
         with:
           cache: pnpm
           node-version: 22
+      - name: setup pages
+        uses: actions/configure-pages@v5
       - name: install deps
         id: install
         run: pnpm install --frozen-lockfile
