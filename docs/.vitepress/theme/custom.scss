@@ -1,0 +1,35 @@
+html {
+	.VPNavBar:not(.home.top) .content-body {
+		backdrop-filter: blur(4px);
+		background-color: #fff7 !important;
+	}
+	&.dark {
+		.VPNavBar:not(.home.top) .content-body {
+			backdrop-filter: blur(4px);
+			background-color: #0007 !important;
+		}
+	}
+
+	a:not(.title):not(.link):not(.outline-link):not(.no-icon):not(.pager-link):not(.header-anchor):not(.visually-hidden):not(.VPButton) {
+		position: relative;
+		text-decoration: none !important;
+		code {
+			border: 1px solid currentColor;
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 0;
+			height: 2px;
+			background-color: currentColor;
+			transition: width 0.2s ease-in-out;
+		}
+		&:hover, &.active {
+			&::before {
+				width: 100%;
+			}
+		}
+	}
+}

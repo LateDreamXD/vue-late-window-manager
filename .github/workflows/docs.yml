@@ -1,0 +1,55 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: docs
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy-docs.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version: 22
+      - name: install deps
+        id: install
+        run: pnpm install --frozen-lockfile
+      - name: build
+        if: steps.install.conclusion == 'success'
+        id: build
+        run: pnpm run build
+      - name: build docs
+        if: steps.build.conclusion == 'success'
+        id: build-docs
+        run: pnpm run build:docs
+      - name: upload docs
+        if: steps.build-docs.conclusion == 'success'
+        id: upload-docs
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./docs/.vitepress/dist
+      - name: deploy docs
+        if: steps.upload-docs.conclusion == 'success'
+        id: deploy-docs
+        uses: actions/deploy-pages@v4

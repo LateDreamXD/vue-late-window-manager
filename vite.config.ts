@@ -10,6 +10,7 @@ export default <UserConfig>{
 		}
 	},
 	server: {
-		open: true
+		open: true,
+		port: 3000
 	}
 }

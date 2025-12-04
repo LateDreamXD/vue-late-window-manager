@@ -1,5 +1,6 @@
 import type { VNode } from 'vue';
 
+// #region window-options
 /** late window options | late window 窗口选项 */
 export declare type LateWindowOptions = {
 	/** window icon | 窗口图标 */
@@ -42,7 +43,9 @@ export declare type LateWindowOptions = {
 	/** window minimizable state | 窗口能否最小化 */
 	minimizable?: boolean;
 }
+// #endregion window-options
 
+// #region window-state
 /** late window state | late window 窗口状态 */
 export declare type LateWindowState = LateWindowOptions & {
 	/** 
@@ -63,3 +66,4 @@ export declare type LateWindowState = LateWindowOptions & {
 		height: number | string;
 	};
 }
+// #endregion window-state

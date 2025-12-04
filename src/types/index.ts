@@ -4,6 +4,7 @@ import type { LateWindowOptions, LateWindowState } from './window';
 import type { UserOptions } from './options';
 
 declare global {
+	// #region instance
 	/** late window manager namespace | late window 窗口管理器命名空间 */
 	namespace LWM {
 		/** late window manager instance | late window 窗口管理器实例 */
@@ -47,6 +48,7 @@ declare global {
 			type LateWindowManager = typeof LateWindowManager;
 		}
 	}
+	// #endregion instance
 }
 
 declare module 'vue' {

@@ -1,5 +1,6 @@
 import type { LateWindowOptions } from './window';
 
+// #region user-options
 /** late window manager options | late window 窗口管理器选项 */
 export declare type UserOptions = {
 	/** default window options | 默认窗口选项 */
@@ -13,3 +14,4 @@ export declare type UserOptions = {
 		initZIndex?: number
 	}
 }
+// #endregion user-options

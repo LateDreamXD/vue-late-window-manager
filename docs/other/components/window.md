@@ -1,0 +1,33 @@
+---
+layout: page
+title: Standalone Window Component Showcase
+---
+
+<script setup>
+import 'vue-late-window-manager/style'
+const win = {
+	id: 'standalone-window',
+	title: 'Standalone Window',
+	position: {
+		x: Math.floor((window.innerWidth - 400) / 2),
+		y: Math.floor((window.innerHeight - 300) / 2)
+	},
+	size: {
+		width: 400,
+		height: 300
+	},
+	zIndex: 100
+}
+</script>
+<style>
+.late-window .dream-button.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
+<LateWindow :window="win">
+	<template v-slot:default>
+		write sth here...
+	</template>
+</LateWindow>
