@@ -42,7 +42,7 @@ jobs:
       - name: build docs
         if: steps.build.conclusion == 'success'
         id: build-docs
-        run: pnpm run build:docs
+        run: pnpm run docs:build
       - name: upload docs
         if: steps.build-docs.conclusion == 'success'
         id: upload-docs
