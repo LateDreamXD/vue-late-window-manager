@@ -33,15 +33,16 @@
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	height: 100vh;
+	// prevent global style polluting
+	// margin: 0;
+	// padding: 0;
+	// width: 100vw;
+	// height: 100vh;
 
 	color-scheme: light;
 
-	color: var(--dream-text-color);
-	background-color: var(--dream-background-color);
+	// color: var(--dream-text-color);
+	// background-color: var(--dream-background-color);
 }
 
 @media (prefers-color-scheme: dark) {
