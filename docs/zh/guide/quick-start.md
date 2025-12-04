@@ -72,7 +72,7 @@ $lwm.actions.openWindow('test-window', {
 
 如果一切正常，您应该会看到一个窗口，就像这样：
 
-<iframe title="Example" src="/other/example.html" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Example" src="/vue-late-window-manager/other/example.html" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
 
 ## 下一步 {#next}
 - [自定义窗口样式](./customization)

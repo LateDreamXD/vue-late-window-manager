@@ -76,7 +76,7 @@ $lwm.actions.openWindow('test-window', {
 
 If is everything right, you should see a window like this:
 
-<iframe title="Example" src="/other/example.html" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Example" src="/vue-late-window-manager/other/example.html" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
 
 ## What's Next? {#next}
 - [Customize the Window Style](./customization)

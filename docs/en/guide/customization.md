@@ -149,4 +149,4 @@ You also can write your own style throw stylesheet. For example:
 
 And it will be rendered as follows:
 
-<iframe title="Customized Example" src="/other/customization" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Customized Example" src="/vue-late-window-manager/other/customization" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>

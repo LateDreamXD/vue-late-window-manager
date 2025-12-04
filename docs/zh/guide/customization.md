@@ -149,4 +149,4 @@ Vue Late Window Manager 提供了默认的窗口样式。若您不满意默认�
 
 它将像这样渲染：
 
-<iframe title="Customized Example" src="/other/customization" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Customized Example" src="/vue-late-window-manager/other/customization" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>

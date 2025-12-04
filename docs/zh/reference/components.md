@@ -25,7 +25,7 @@ const win: LWM.State.windows['0'] = {
 ...
 ```
 
-<iframe title="Rendered Result" src="/other/components/window" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Rendered Result" src="/vue-late-window-manager/other/components/window" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
 
 ## `LateWindowManager` {#late-window-manager}
 <Badge type="tip">别名 <code>LWM</code></Badge>  
@@ -70,4 +70,4 @@ $lwm.actions.openWindow('test-window', {
 ...
 ```
 
-<iframe title="Rendered Result" src="/other/components/windowManager" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Rendered Result" src="/vue-late-window-manager/other/components/windowManager" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
