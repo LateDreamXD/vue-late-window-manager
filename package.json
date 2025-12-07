@@ -18,7 +18,7 @@
     "./style": "./dist/index.css"
   },
   "scripts": {
-    "prebuild": "node .bin/prebuild.cjs",
+    "prebuild": "node .bin/prebuild.cjs && vue-tsc --declaration --emitDeclarationOnly",
     "build": "vue-tsc --noEmit && tsup",
     "check": "vue-tsc --noEmit",
     "postbuild": "node .bin/postbuild.cjs",
