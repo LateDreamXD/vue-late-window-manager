@@ -1,5 +1,3 @@
-@use './base.scss';
-
 @keyframes LateWindowFadein {
 	0% {
 		transform: translate(0, 100%) scale(0.9);
@@ -27,7 +25,38 @@
 	}
 }
 
-.late-window {
+:deep(.late-window) {
+	--dream-primary-color: #ff1493;
+	--dream-primary-color-hover: #ff69b4;
+	--dream-primary-color-active: #ff1493;
+
+	--dream-primary-border-color: #ff14936c;
+	--dream-primary-outline-color: #ff149333;
+
+	--dream-secondary-color: #faafd5;
+	--dream-secondary-color-hover: #f87cba;
+	--dream-secondary-color-active: #faafd5;
+
+	--dream-secondary-border-color: #faafd56c;
+	--dream-secondary-outline-color: #faafd533;
+
+
+	--dream-error-color: #ff1024;
+	--dream-warn-color: #ffc414;
+	--dream-info-color: #12cfff;
+
+	
+	@media (prefers-color-scheme: dark) {
+		--dream-text-color: #fff;
+		--dream-text-color-hover: #fff;
+		--dream-text-color-active: #fff;
+		--dream-text-color-muted: #fff7;
+
+		--dream-background-color: #233;
+		--dream-background-color-muted: #344;
+	}
+
+
 	position: fixed;
 	flex-direction: column;
 	transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
@@ -52,11 +81,16 @@
 		border-left: 1px solid var(--dream-text-color-muted);
 		border-right: 1px solid var(--dream-text-color-muted);
 
-		.title {
+		&>* {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&>.title {
 			user-select: none;
 			margin-left: 4px;
-			display: inline-flex;
-			.icon {
+			&>.icon {
 				pointer-events: none;
 				width: 16px;
 				height: 16px;
@@ -64,37 +98,35 @@
 			}
 		}
 
-		.controls {
-			display: flex;
-			align-items: center;
-
-			.icon {
-				margin: 0;
-				width: 30px;
-				height: 30px;
-				border-radius: 0;
-				color: var(--dream-text-color-muted);
-				transition: background-color 0.2s ease-in-out;
-				svg, img {
-					width: 12px;
-					height: 12px;
-				}
+		&>.controls>.icon {
+			padding: 0;
+			border: 0;
+			margin: 0;
+			width: 30px;
+			height: 30px;
+			border-radius: 0;
+			color: var(--dream-text-color-muted);
+			transition: background-color 0.2s ease-in-out;
+			&>svg, &>img {
+				margin: auto;
+				width: 12px;
+				height: 12px;
+			}
+			&.danger {
+				border-radius: 0 8px 0 0;
+			}
+			&:hover {
+				opacity: 1;
+				color: var(--dream-text-color-hover);
+				background-color: var(--dream-text-color-muted);
 				&.danger {
-					border-radius: 0 8px 0 0;
-				}
-				&:hover {
-					opacity: 1;
 					color: var(--dream-text-color-hover);
-					background-color: var(--dream-text-color-muted);
-					&.danger {
-						color: var(--dream-text-color-hover);
-						background-color: var(--dream-error-color);
-					}
+					background-color: var(--dream-error-color);
 				}
-				&:active {
-					color: var(--dream-text-color-active);
-					background-color: initial;
-				}
+			}
+			&:active {
+				color: var(--dream-text-color-active);
+				background-color: initial;
 			}
 		}
 	}
