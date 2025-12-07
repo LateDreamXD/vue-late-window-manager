@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "vue-late-window-manager": [
+        "../src/index.ts"
+      ]
+    }
+  },
+  "include": ["**/*"]
+}

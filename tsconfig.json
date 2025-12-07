@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "esModuleInterop": true,
 
     "target": "esnext",
     "module": "esnext",
@@ -9,12 +10,11 @@
     "baseUrl": ".",
     "paths": {
       "vue-late-window-manager": [
-        "src/index.ts"
+        "dist/index.js"
       ]
     }
   },
   "include": [
-    "src/**/*",
-    "test/**/*"
+    "src/**/*"
   ]
 }
