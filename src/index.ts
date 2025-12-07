@@ -120,6 +120,10 @@ export default {
 				},
 				manager: {
 					initZIndex: 100,
+					customClass: {
+						manager: 'late-window-manager',
+						window: 'late-window',
+					},
 					...options?.manager
 				}
 			}),

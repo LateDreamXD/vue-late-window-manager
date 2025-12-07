@@ -11,7 +11,20 @@ export declare type UserOptions = {
 		 * initial z-index | 初始 z-index
 		 * @default 100
 		 */
-		initZIndex?: number
+		initZIndex?: number;
+		/** custom class name | 自定义类名 */
+		customClass?: {
+			/**
+			 * custom class name for window manager | 窗口管理器自定义类名
+			 * @default 'late-window-manager'
+			 */
+			manager?: string;
+			/**
+			 * custom class name for window | 窗口自定义类名
+			 * @default 'late-window'
+			 */
+			window?: string;
+		}
 	}
 }
 // #endregion user-options

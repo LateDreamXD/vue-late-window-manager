@@ -22,7 +22,7 @@ $lwm.actions.openWindow('ld', {
 </script>
 
 <template>
-	<LWM />
+	<LWM :custom-class="{ manager: 'custom-manager', window: 'custom-window' }" />
 </template>
 
 <style>

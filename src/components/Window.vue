@@ -56,7 +56,7 @@ const close = () => $lwm.actions.closeWindow(props.window.id);
 </script>
 
 <template>
-	<div class="late-window" :id="window.id" :class="{ 'focused': isActive, 'minimized': window.isMinimized, 'maximized': window.isMaximized }" :style="styleObject" @mousedown="onMouseDown">
+	<div :id="window.id" :class="{ [$lwm.DefaultOptions.manager!.customClass!.window!]: true, 'focused': isActive, 'minimized': window.isMinimized, 'maximized': window.isMaximized }" :style="styleObject" @mousedown="onMouseDown">
 		<div class="title-bar" @mousedown="startDrag">
 			<span class="title">
 				<img class="icon" v-if="window.icon" :src="window.icon" alt="props.window.title" />
