@@ -22,7 +22,7 @@
     "build": "vue-tsc --noEmit && tsup",
     "check": "vue-tsc --noEmit",
     "postbuild": "node .bin/postbuild.cjs",
-    "test": "vite",
+    "dev": "vite",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
