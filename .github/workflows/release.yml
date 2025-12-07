@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: install deps
+        run: pnpm install
+      - name: check
+        id: check
+        run: pnpm check
+      - name: generate changelog
+        id: gen_changelog
+        env:
+          filename: 'CHANGELOG.md'
+        run: |
+          echo "## What's changed:" >> ${{ env.filename }}
+          git log --pretty=format:'- %s by @%an' --grep '^(. )?(fix|feat|perf|sync)(\(.+\))?:' -E $(git describe --tags --abbrev=0 ${{ github.ref_name }}^)..${{ github.ref_name }} >> ${{ env.filename }}
+          echo -e '\n\n[**Full Changes**](https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 ${{ github.ref_name }}^)'...${{ github.ref_name }})' >> ${{ env.filename }}
+          echo '✔️ Changelog generated.'
+      - name: release
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          prerelease: ${{ contains(github.ref_name, 'pre') }}
+          name: v${{ github.ref_name }}
+          bodyFile: 'CHANGELOG.md'
