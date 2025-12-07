@@ -13,7 +13,7 @@ export default defineConfig([
 		platform: 'neutral',
 		esbuildPlugins: [Vue(), dts({
 			declarationOnly: true,
-			exclude: ['test/**/*', 'icons.ts']
+			exclude: ['test/**/*', 'src/icons.ts']
 		})],
 		minify: true,
 		dts: false // use unplugin-dts
