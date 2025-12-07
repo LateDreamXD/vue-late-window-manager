@@ -33,8 +33,8 @@ open();
 
 <LWM />
 
-<style lang="scss">
-.late-window-manager .dream-button.icon {
+<style lang="scss" scooped>
+.title-bar>* {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

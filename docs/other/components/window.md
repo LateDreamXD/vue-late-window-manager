@@ -4,7 +4,6 @@ title: Standalone Window Component Showcase
 ---
 
 <script setup>
-import 'vue-late-window-manager/style'
 const win = {
 	id: 'standalone-window',
 	title: 'Standalone Window',
@@ -19,8 +18,9 @@ const win = {
 	zIndex: 100
 }
 </script>
-<style>
-.late-window .dream-button.icon {
+<style scooped>
+@import 'vue-late-window-manager/style';
+.title-bar>* {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

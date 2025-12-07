@@ -5,7 +5,6 @@ title: Example
 
 <script setup lang="ts">
 import { inject } from 'vue';
-import 'vue-late-window-manager/style';
 
 const $lwm = inject<LWM.Instance>('$lwm')!;
 
@@ -34,8 +33,9 @@ open();
 
 <LWM />
 
-<style>
-.late-window-manager .dream-button.icon {
+<style scooped>
+@import 'vue-late-window-manager/style';
+.title-bar>* {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

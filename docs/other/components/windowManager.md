@@ -5,7 +5,6 @@ title: Window Manager Component Showcase
 
 <script setup lang="ts">
 import { inject, h } from 'vue';
-import 'vue-late-window-manager/style';
 
 const $lwm = inject<LWM.Instance>('$lwm')!;
 
@@ -37,8 +36,9 @@ $lwm.actions.openWindow('test-window', {
 
 <LWM />
 
-<style>
-.late-window-manager .dream-button.icon {
+<style scooped>
+@import 'vue-late-window-manager/style';
+.title-bar>* {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
