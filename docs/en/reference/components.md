@@ -1,6 +1,6 @@
 # Components {#components}
 
-Vue Late Window Manager provides two components: `LateWindow` and `LateWindowManager`. They will be registered as global components when you [import plugin](../guide/quick-start#import-the-plugin).
+Vue Late Window Manager provides two components: `LateWindow` and `LateWindowManager`. They will be registered as global components when you [import plugin](../guide/quick-start#import).
 
 ## `LateWindow` {#late-window}
 <Badge type="tip">alias <code>late-window</code></Badge>

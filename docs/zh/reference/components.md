@@ -1,6 +1,6 @@
 # 组件 {#components}
 
-Vue Late Window Manager 提供了两个组件：`LateWindow` 和 `LateWindowManager`。它们在您[导入插件](../guide/quick-start#import-the-plugin)时会被注册为全局组件。
+Vue Late Window Manager 提供了两个组件：`LateWindow` 和 `LateWindowManager`。它们会在您[导入插件](../guide/quick-start#import-the-plugin)时被注册为全局组件。
 
 ## `LateWindow` {#late-window}
 <Badge type="tip">别名 <code>late-window</code></Badge>

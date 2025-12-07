@@ -9,7 +9,7 @@ Vue Late Window Manager 提供了默认的窗口样式。若您不满意默认�
 ::: code-group
 
 ```css [默认颜色 (亮)]
-:root {
+.late-window {
   /** 主要颜色 */
   --dream-primary-color: #ff1493;
   --dream-primary-color-hover: #ff69b4;
@@ -44,7 +44,7 @@ Vue Late Window Manager 提供了默认的窗口样式。若您不满意默认�
 
 ```css [默认颜色 (暗)]
 @media (prefers-color-scheme: dark) {
-  :root {
+  .late-window {
     /** 文本颜色 */
     --dream-text-color: #fff;
     --dream-text-color-hover: #fff;

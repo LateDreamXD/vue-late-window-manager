@@ -33,11 +33,6 @@ open();
 
 <LWM />
 
-<style scooped>
+<style scoped>
 @import 'vue-late-window-manager/style';
-.title-bar>* {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
 </style>

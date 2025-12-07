@@ -36,9 +36,9 @@ $lwm.actions.openWindow('test-window', {
 
 <LWM />
 
-<style scooped>
+<style scoped>
 @import 'vue-late-window-manager/style';
-.title-bar>* {
+:deep(.title-bar)>* {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

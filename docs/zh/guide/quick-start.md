@@ -9,16 +9,20 @@ Vue Late Window Manager 可以添加到您现有的 Vue3 项目中。
 
 ::: code-group
 
-```bash [npm]
+```sh [npm]
 $ npm install vue-late-window-manager -D
 ```
 
-```bash [pnpm]
+```sh [pnpm]
 $ pnpm add vue-late-window-manager -D
 ```
 
-```bash [yarn]
+```sh [yarn]
 $ yarn add vue-late-window-manager -D
+```
+
+```sh [bun]
+$ bun add vue-late-window-manager -D
 ```
 
 :::

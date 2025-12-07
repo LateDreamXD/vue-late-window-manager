@@ -9,7 +9,7 @@ You can customize the default style by overriding css variables.
 ::: code-group
 
 ```css [Default colors (Light)]
-:root {
+.late-window {
   /** Primary color */
   --dream-primary-color: #ff1493;
   --dream-primary-color-hover: #ff69b4;
@@ -44,7 +44,7 @@ You can customize the default style by overriding css variables.
 
 ```css [Default colors (Dark)]
 @media (prefers-color-scheme: dark) {
-  :root {
+  .late-window {
     /** Text color */
     --dream-text-color: #fff;
     --dream-text-color-hover: #fff;
