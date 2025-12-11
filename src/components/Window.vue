@@ -64,11 +64,11 @@ const close = () => $lwm.actions.closeWindow(props.window.id);
 				{{ window.title }}
 			</span>
 			<div class="controls">
-				<button class="dream-button icon" @click="minimize" title="最小化" v-html="icons['window-minimize']"></button>
-				<button class="dream-button icon" @click="maximize" :title="window.isMaximized? '还原': '最大化'"
-					v-html="window.isMaximized? icons.compress: icons.expand"
+				<button class="dream-button icon" @click="minimize" title="Minimize" aria-label="Minimize" v-html="icons['window-minimize']"></button>
+				<button class="dream-button icon" @click="maximize" :title="window.isMaximized? 'Restore': 'Maximize'"
+						:aria-label="window.isMaximized? 'Restore': 'Maximize'" v-html="window.isMaximized? icons.compress: icons.expand"
 				></button>
-				<button class="dream-button danger icon" @click="close" title="关闭" v-html="icons.xmark"></button>
+				<button class="dream-button danger icon" @click="close" title="Close" aria-label="Close" v-html="icons.xmark"></button>
 			</div>
 		</div>
 		<div class="workspace">
