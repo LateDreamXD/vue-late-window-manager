@@ -15,7 +15,8 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     },
-    "./style": "./dist/index.css"
+    "./style": "./dist/styles/default.css",
+    "./style-scoped": "./dist/styles/default-scoped.css"
   },
   "scripts": {
     "prebuild": "node .bin/prebuild.cjs",

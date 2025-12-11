@@ -25,7 +25,7 @@
 	}
 }
 
-:deep(.late-window) {
+.late-window {
 	--dream-primary-color: #ff1493;
 	--dream-primary-color-hover: #ff69b4;
 	--dream-primary-color-active: #ff1493;
@@ -106,6 +106,7 @@
 			height: 30px;
 			border-radius: 0;
 			color: var(--dream-text-color-muted);
+			background-color: transparent;
 			transition: background-color 0.2s ease-in-out;
 			&>svg, &>img {
 				margin: auto;

@@ -19,9 +19,10 @@ export default defineConfig([
 		dts: false // use unplugin-dts
 	},
 	{
-		entry: ['src/index.scss'],
-		bundle: true,
-		outDir: 'dist',
+		entry: ['src/styles/default.scss', 'src/styles/default-scoped.scss'],
+		bundle: false,
+		minify: true,
+		outDir: 'dist/styles',
 		esbuildPlugins: [sassPlugin()]
 	}
 ]);
