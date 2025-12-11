@@ -28,6 +28,7 @@ const onMouseDown = (e: MouseEvent) => {
 }
 
 const startDrag = (e: MouseEvent) => {
+	if(props.window.isMaximized || !props.window.moveable) return;
 	dragging.value = true;
 	offset.value = {
 		x: e.clientX - props.window.position!.x,

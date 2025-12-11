@@ -103,7 +103,7 @@ export default {
 				},
 				updateWindowPos(id: string, pos: { x: number; y: number }) {
 					const win = state.windows.find(w => w.id === id);
-					if (win && win.moveable) {
+					if (win) {
 						win.position = pos;
 					} else
 						console.warn(`Window with id ${id} not found`);
