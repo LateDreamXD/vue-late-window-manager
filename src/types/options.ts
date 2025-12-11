@@ -24,7 +24,12 @@ export declare type UserOptions = {
 			 * @default 'late-window'
 			 */
 			window?: string;
-		}
+		};
+		/**
+		 * globally register components | 全局注册组件
+		 * @default true
+		 */
+		globallyRegisterComponts?: boolean;
 	}
 }
 // #endregion user-options

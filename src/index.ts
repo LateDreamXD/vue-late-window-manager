@@ -6,22 +6,26 @@
 import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
 import type { UserOptions, LateWindowOptions, LateWindowState } from './types/';
 
+const LateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
+const LateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
+
 export { version } from '../package.json';
+export { LateWindow, LateWindowManager };
 
 export default {
 	install(app: App, options?: UserOptions) {
-		const lateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
-		const lateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
-		app.component('LateWindow', lateWindow)
-		   .component('late-window', lateWindow)
-		   .component('LateWindowManager', lateWindowManager)
-		   .component('late-window-manager', lateWindowManager)
-		   .component('LWM', lateWindowManager);
-		app.config.globalProperties.LateWindow = lateWindow;
-		app.config.globalProperties['late-window'] = lateWindow;
-		app.config.globalProperties.LateWindowManager = lateWindowManager;
-		app.config.globalProperties['late-window-manager'] = lateWindowManager;
-		app.config.globalProperties.LWM = lateWindowManager;
+		if(options?.manager?.globallyRegisterComponts ?? true) {
+			app.component('LateWindow', LateWindow)
+			.component('late-window', LateWindow)
+			.component('LateWindowManager', LateWindowManager)
+			.component('late-window-manager', LateWindowManager)
+			.component('LWM', LateWindowManager);
+			app.config.globalProperties.LateWindow = LateWindow;
+			app.config.globalProperties['late-window'] = LateWindow;
+			app.config.globalProperties.LateWindowManager = LateWindowManager;
+			app.config.globalProperties['late-window-manager'] = LateWindowManager;
+			app.config.globalProperties.LWM = LateWindowManager;
+		}
 
 		const state = reactive({
 			activeWindowId: null as string | null,
