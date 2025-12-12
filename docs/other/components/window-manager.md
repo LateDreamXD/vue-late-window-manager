@@ -25,7 +25,7 @@ $lwm.actions.openWindow('test-window', {
 	content: h('p', { style: { padding: '6px' } }, 'Hello Vue Late Window Manager!'),
 	size: {
 		width: 350,
-		height: 36
+		height: 'auto'
 	},
 	position: {
 		x: Math.floor((window.innerWidth - 350) / 2),
@@ -37,10 +37,5 @@ $lwm.actions.openWindow('test-window', {
 <LWM />
 
 <style scoped>
-@import 'vue-late-window-manager/style';
-:deep(.title-bar)>* {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
+@import 'vue-late-window-manager/style-scoped';
 </style>

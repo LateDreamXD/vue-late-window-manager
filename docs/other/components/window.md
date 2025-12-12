@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: false
 title: Standalone Window Component Showcase
 ---
 
@@ -19,15 +19,10 @@ const win = {
 }
 </script>
 <style scoped>
-@import 'vue-late-window-manager/style';
-:deep(.title-bar)>* {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
+@import 'vue-late-window-manager/style-scoped';
 </style>
 <LateWindow :window="win">
-	<template v-slot:default>
+	<template #default>
 		write sth here...
 	</template>
 </LateWindow>

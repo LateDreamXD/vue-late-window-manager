@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: false
 title: Example
 ---
 
@@ -29,10 +29,10 @@ const reopen = () => {
 open();
 </script>
 
-<button class="dream-button" style="margin: 8px;" @click="reopen">Reopen</button>
+<a role="button" href="#reopen" @click.prevent="reopen" style="margin: 8px;">Reopen</a>
 
 <LWM />
 
 <style scoped>
-@import 'vue-late-window-manager/style';
+@import 'vue-late-window-manager/style-scoped';
 </style>

@@ -17,7 +17,7 @@ const win: LWM.State.windows['0'] = {
 </script>
 <template>
 	<LateWindow :window="win">
-		<template v-slot:default>
+		<template #default>
 			write sth here...
 		</template>
 	</LateWindow>
@@ -56,7 +56,7 @@ $lwm.actions.openWindow('test-window', {
 	content: h('p', { style: { padding: '6px' } }, 'Hello Vue Late Window Manager!'),
 	size: {
 		width: 350,
-		height: 36
+		height: 'auto'
 	},
 	position: {
 		x: Math.floor((window.innerWidth - 350) / 2),
@@ -70,4 +70,4 @@ $lwm.actions.openWindow('test-window', {
 ...
 ```
 
-<iframe title="Rendered Result" src="/vue-late-window-manager/other/components/windowManager" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
+<iframe title="Rendered Result" src="/vue-late-window-manager/other/components/window-manager" width="100%" height="400px" style="border: 1px solid #ccc;border-radius: 6px;"></iframe>
