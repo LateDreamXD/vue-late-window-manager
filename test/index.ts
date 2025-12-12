@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import TestApp from './TestApp.vue';
 import LWM from 'vue-late-window-manager';
-import '../dist/index.css';
+import '../src/styles/default.scss';
 
 const app = createApp(TestApp).use(LWM);
 app.mount('#app');
