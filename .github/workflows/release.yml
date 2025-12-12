@@ -4,12 +4,12 @@ on:
   push:
     tags:
       - '*'
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
   release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,3 +39,30 @@ jobs:
           prerelease: ${{ contains(github.ref_name, 'pre') }}
           name: v${{ github.ref_name }}
           bodyFile: 'CHANGELOG.md'
+
+  publish:
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version: 22
+      # Ensure npm 11.5.1 or later is installed
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: install deps
+        id: install
+        run: pnpm install --frozen-lockfile
+      - name: build
+        if: steps.install.conclusion == 'success'
+        id: build
+        run: pnpm run build
+      - name: publish
+        if: steps.build.conclusion == 'success'
+        # https://github.com/pnpm/pnpm/issues/5894
+        run: pnpm publish --no-git-checks
