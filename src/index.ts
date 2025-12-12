@@ -84,8 +84,8 @@ export default {
 								y: 0
 							};
 							win.size = {
-								width: '100vw',
-								height: '100vh'
+								width: '100%',
+								height: '100%'
 							}
 						} else {
 							win.position = win.lastPosition;

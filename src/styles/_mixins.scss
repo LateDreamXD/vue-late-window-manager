@@ -13,6 +13,7 @@
 }
 
 @mixin window {
+	color-scheme: light;
 	--dream-primary-color: #ff1493;
 	--dream-primary-color-hover: #ff69b4;
 	--dream-primary-color-active: #ff1493;
@@ -40,6 +41,7 @@
 
 
 	@media (prefers-color-scheme: dark) {
+		color-scheme: dark;
 		--dream-text-color: #fff;
 		--dream-text-color-hover: #fff;
 		--dream-text-color-active: #fff;
@@ -49,12 +51,12 @@
 		--dream-background-color-muted: #344;
 	}
 
-
 	position: fixed;
 	flex-direction: column;
-	transition: width 0.3s ease-in-out,
-	height 0.3s ease-in-out;
+	overflow: hidden;
 	animation: LateWindowFadein 0.3s ease-in-out;
+	interpolate-size: allow-keywords;
+	transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease;
 
 	&.minimized {
 		animation: LateWindowFadeout 0.3s ease-in-out;
@@ -137,17 +139,21 @@
 		flex: 1;
 		width: 100%;
 		max-height: calc(100% - 30px);
-		overflow: auto;
+		overflow: hidden;
 		border-radius: 0 0 8px 8px;
 		color: var(--dream-text-color);
 		background-color: var(--dream-background-color);
+		transition: height 0.3s ease;
 		// padding: 2px 4px;
 
 		border-bottom: 1px solid var(--dream-text-color-muted);
 		border-left: 1px solid var(--dream-text-color-muted);
 		border-right: 1px solid var(--dream-text-color-muted);
 
-		&>* {
+		&>.content {
+			width: 100%;
+			height: 100%;
+			overflow: auto;
 			border-radius: 0 0 8px 8px;
 		}
 	}
@@ -168,8 +174,10 @@
 		}
 	}
 
-	&.maximized {
-		width: 100%;
-		height: 100%;
+	&.dragging {
+		transition: none;
+		>.workspace {
+			pointer-events: none;
+		}
 	}
 }
