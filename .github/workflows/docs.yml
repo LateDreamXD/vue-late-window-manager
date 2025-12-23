@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+    tags: ['*']
 
 permissions:
   contents: read
@@ -15,7 +16,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      pass: ${{ steps.check.outputs.pass }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # make sure fetched latest commit
+      - name: Check
+        id: check
+        run: |
+          if git log --format=%s -1 | grep -q '^docs' || ${{ github.ref_type == 'tag' }}; then
+            echo "::set-output name=pass::true"
+            echo "✅ latest commit is a docs commit/tag, building and deploying"
+          else
+            echo "::set-output name=pass::false"
+            echo "⏭️ latest commit is not a docs commit/tag, skipping"
+          fi
+
   build-and-deploy:
+    needs: check
+    if: needs.check.outputs.pass == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deploy-docs.outputs.page_url }}
