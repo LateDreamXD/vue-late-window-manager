@@ -1,20 +1,6 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-
-    "baseUrl": ".",
-    "paths": {
-      "vue-late-window-manager": [
-        "dist/index.js"
-      ]
-    }
-  },
-  "include": [
-    "src/**/*"
+  "references": [
+    {"path": "./tsconfig.app.json"},
+    {"path": "./tsconfig.node.json"}
   ]
 }

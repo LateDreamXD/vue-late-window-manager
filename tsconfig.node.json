@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "strict": true,
+    "target": "es2015",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "include": ["*.config.ts", ".bin/**/*"]
+}

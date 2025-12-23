@@ -15,15 +15,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: install deps
-        run: pnpm install
-      - name: check
-        id: check
-        run: pnpm check
       - name: generate changelog
         id: gen_changelog
         env:
@@ -56,13 +47,9 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
       - name: install deps
-        id: install
         run: pnpm install --frozen-lockfile
       - name: build
-        if: steps.install.conclusion == 'success'
-        id: build
         run: pnpm run build
       - name: publish
-        if: steps.build.conclusion == 'success'
         # https://github.com/pnpm/pnpm/issues/5894
         run: pnpm publish --no-git-checks

@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
       - name: Setup Node.js
@@ -35,23 +33,15 @@ jobs:
       - name: setup pages
         uses: actions/configure-pages@v5
       - name: install deps
-        id: install
         run: pnpm install --frozen-lockfile
       - name: build
-        if: steps.install.conclusion == 'success'
-        id: build
         run: pnpm run build
       - name: build docs
-        if: steps.build.conclusion == 'success'
-        id: build-docs
         run: pnpm run docs:build
       - name: upload docs
-        if: steps.build-docs.conclusion == 'success'
-        id: upload-docs
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./docs/.vitepress/dist
       - name: deploy docs
-        if: steps.upload-docs.conclusion == 'success'
         id: deploy-docs
         uses: actions/deploy-pages@v4

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

@@ -4,7 +4,7 @@
  * @author LateDream
  */
 import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
-import type { UserOptions, LateWindowOptions, LateWindowState } from './types/';
+import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
 
 const LateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
 const LateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
@@ -13,7 +13,7 @@ export { version } from '../package.json';
 export { LateWindow, LateWindowManager };
 
 export default {
-	install(app: App, options?: UserOptions) {
+	install(app: App, options?: UserOptions): void {
 		if(options?.manager?.globallyRegisterComponts ?? true) {
 			app.component('LateWindow', LateWindow)
 			.component('late-window', LateWindow)
