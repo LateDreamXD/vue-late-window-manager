@@ -59,14 +59,46 @@ const close = () => {
 	minimize();
 	setTimeout(() => $lwm.actions.closeWindow(window.id), 300);
 };
+
+const onTouchStart = (e: TouchEvent) => {
+	if(e.touches.length > 1) return;
+	$lwm.actions.focusWindow(window.id);
+}
+
+const startTouchDrag = (e: TouchEvent) => {
+	if(window.isMaximized || !window.moveable || e.touches.length > 1) return;
+	dragging.value = true;
+	const touch = e.touches[0];
+	offset.value = {
+		x: touch.clientX - window.position!.x,
+		y: touch.clientY - window.position!.y
+	}
+	document.addEventListener('touchmove', onTouchDrag, { passive: false });
+	document.addEventListener('touchend', stopTouchDrag);
+}
+
+const onTouchDrag = (e: TouchEvent) => {
+	if (!dragging.value) return;
+	e.preventDefault();
+	const touch = e.touches[0];
+	let x = touch.clientX - offset.value.x;
+	let y = touch.clientY - offset.value.y;
+	$lwm.actions.updateWindowPos(window.id, { x, y });
+}
+
+const stopTouchDrag = () => {
+	dragging.value = false;
+	document.removeEventListener('touchmove', onTouchDrag);
+	document.removeEventListener('touchend', stopTouchDrag);
+}
 </script>
 
 <template>
 	<div :data-window-id="window.id" :class="{
 		[$lwm.DefaultOptions.manager!.customClass!.window!]: true, dragging,
 		focused: isActive, minimized: window.isMinimized, maximized: window.isMaximized
-	}" :style="styleObject" @mousedown="onMouseDown">
-		<div class="title-bar" @mousedown="startDrag">
+	}" :style="styleObject" @mousedown="onMouseDown" @touchstart="onTouchStart">
+		<div class="title-bar" @mousedown="startDrag" @touchstart="startTouchDrag">
 			<span class="title">
 				<img class="icon" v-if="window.icon" :src="window.icon" alt="window.title" />
 				{{ window.title }}
