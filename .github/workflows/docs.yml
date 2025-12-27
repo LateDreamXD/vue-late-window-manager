@@ -29,10 +29,10 @@ jobs:
         id: check
         run: |
           if git log --format=%s -1 | grep -q '^docs' || ${{ github.ref_type == 'tag' }}; then
-            echo "::set-output name=pass::true"
+            echo "pass=true" >> $GITHUB_ENV
             echo "✅ latest commit is a docs commit/tag, building and deploying"
           else
-            echo "::set-output name=pass::false"
+            echo "pass=false" >> $GITHUB_ENV
             echo "⏭️ latest commit is not a docs commit/tag, skipping"
           fi
 
