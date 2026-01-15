@@ -5,8 +5,8 @@ export default defineAdditionalConfig({
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		nav: [
-			{ text: 'Guide', link: '/guide/quick-start' },
-			{ text: 'Reference', link: '/reference/options' },
+			{ text: 'Guide', link: '/en/guide/quick-start' },
+			{ text: 'Reference', link: '/en/reference/options' },
 			{
 				text: `v${version}`,
 				items: [
@@ -44,7 +44,7 @@ export default defineAdditionalConfig({
 		sidebar: [
 			{
 				text: 'Guide',
-				base: '/guide/',
+				base: '/en/guide/',
 				items: [
 					{ text: 'Quick Start', link: 'quick-start' },
 					{ text: 'Customization', link: 'customization' },
@@ -52,7 +52,7 @@ export default defineAdditionalConfig({
 			},
 			{
 				text: 'Reference',
-				base: '/reference/',
+				base: '/en/reference/',
 				items: [
 					{ text: 'Options', link: 'options' },
 					{ text: 'Instance', link: 'instance' },
@@ -61,7 +61,7 @@ export default defineAdditionalConfig({
 			},
 			{
 				text: 'Types',
-				base: '/types/',
+				base: '/en/types/',
 				items: [
 					{ text: 'Options (Types)', link: 'options' },
 					{ text: 'Instance (Types)', link: 'instance' },
@@ -75,7 +75,7 @@ export default defineAdditionalConfig({
 					// TODO: Playground
 					// { text: 'Playground', link: '/other/playground' },
 					// { text: 'Example', link: '/other/example' },
-					{ text: 'Update Plan', link: '/update-plan' }
+					{ text: 'Update Plan', link: '/en/update-plan' }
 				]
 			}
 		],

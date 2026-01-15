@@ -44,8 +44,8 @@ export default defineConfig({
 
 	themeConfig: {
 		nav: [
-			{ text: '指南', link: '/zh/guide/quick-start', activeMatch: '/zh/guide/' },
-			{ text: '参考', link: '/zh/reference/options', activeMatch: '/zh/reference/' },
+			{ text: '指南', link: '/guide/quick-start', activeMatch: '/zh/guide/' },
+			{ text: '参考', link: '/reference/options', activeMatch: '/zh/reference/' },
 			{
 				text: `v${version}`,
 				items: [
@@ -80,7 +80,7 @@ export default defineConfig({
 		sidebar: [
 			{
 				text: '指南',
-				base: '/zh/guide/',
+				base: '/guide/',
 				items: [
 					{ text: '快速开始', link: 'quick-start' },
 					{ text: '自定义', link: 'customization' },
@@ -88,7 +88,7 @@ export default defineConfig({
 			},
 			{
 				text: '参考',
-				base: '/zh/reference/',
+				base: '/reference/',
 				items: [
 					{ text: '选项', link: 'options' },
 					{ text: '实例', link: 'instance' },
@@ -97,7 +97,7 @@ export default defineConfig({
 			},
 			{
 				text: '类型',
-				base: '/zh/types/',
+				base: '/types/',
 				items: [
 					{ text: '选项 (Options)', link: 'options' },
 					{ text: '实例 (Instance)', link: 'instance' },
@@ -111,7 +111,7 @@ export default defineConfig({
 					// TODO: Playground
 					// { text: 'Playground', link: '/other/playground' },
 					// { text: 'Example', link: '/other/example' },
-					{ text: '更新计划', link: '/zh/update-plan' }
+					{ text: '更新计划', link: '/update-plan' }
 				]
 			}
 		],
