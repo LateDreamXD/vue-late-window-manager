@@ -80,10 +80,6 @@ export default defineAdditionalConfig({
 			}
 		],
 
-		socialLinks: [
-			{ icon: 'github', link: 'https://github.com/LateDreamXD/vue-late-window-manager' }
-		],
-
 		langMenuLabel: 'Mult-Language'
 	}
 });

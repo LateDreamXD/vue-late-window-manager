@@ -130,6 +130,10 @@ export default defineConfig({
 		darkModeSwitchLabel: '主题',
 		lightModeSwitchTitle: '切换到浅色模式',
 		darkModeSwitchTitle: '切换到深色模式',
-		skipToContentLabel: '跳转到内容'
+		skipToContentLabel: '跳转到内容',
+
+		socialLinks: [
+			{ icon: 'github', link: 'https://github.com/LateDreamXD/vue-late-window-manager' }
+		]
 	}
 })
