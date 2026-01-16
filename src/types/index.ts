@@ -57,7 +57,8 @@ declare module 'vue' {
 		 * late window manager instance | late window 窗口管理器实例
 		 */
 		$lwm: LWM.Instance;
-
+	}
+	interface GlobalComponents {
 		/**
 		 * late window element | late window 窗口元素
 		 * @alias late-window
