@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import { h, inject } from 'vue';
+import { h } from 'vue';
+import { useLWM } from 'vue-late-window-manager';
 
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
-$lwm.actions.openWindow('test-window', {
+lwm.actions.openWindow('test-window', {
 	content: h('p', { style: { padding: '6px' } }, 'Hello Vue Late Window Manager!'),
 	size: {
 		width: 400,
 		height: 'auto'
 	}
 });
-$lwm.actions.openWindow('ld', {
+lwm.actions.openWindow('ld', {
 	title: 'LateDreamXD',
 	icon: 'https://about.latedream.cn/avatar',
 	content: h('div', {}, [
