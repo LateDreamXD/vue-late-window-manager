@@ -1,5 +1,5 @@
 import type { UserConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import vue from 'unplugin-vue/vite';
 
 export default <UserConfig>{
 	root: './test',
