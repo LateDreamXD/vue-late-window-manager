@@ -3,6 +3,14 @@ import type { LateWindowOptions } from './window';
 // #region user-options
 /** late window manager options | late window 窗口管理器选项 */
 export declare type UserOptions = {
+	/** default console options | 默认控制台选项 */
+	console?: {
+		/**
+		 * enable console log | 启用控制台日志
+		 * @default true
+		 */
+		enabled?: boolean;
+	};
 	/** default window options | 默认窗口选项 */
 	window?: LateWindowOptions;
 	/** default window manager options | 默认窗口管理器选项 */

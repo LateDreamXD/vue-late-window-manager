@@ -3,7 +3,8 @@
  * @license MIT
  * @author LateDream
  */
-import { type App, defineAsyncComponent, reactive, readonly } from 'vue';
+import { type App, defineAsyncComponent, reactive, readonly, inject } from 'vue';
+import logger from './utils/logger';
 import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
 
 const LateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
@@ -27,13 +28,15 @@ export default {
 			app.config.globalProperties.LWM = LateWindowManager;
 		}
 
+		logger._setEnabled(options?.console?.enabled ?? true);
+
 		const state = reactive({
 			activeWindowId: null as string | null,
 			windows: [] as LateWindowState[],
 			zIndexCounter: options?.manager?.initZIndex ?? 100
 		});
 
-		const $lwm = {
+		const lwm = {
 			actions: {
 				focusWindow: (id: string) => {
 					const win = state.windows.find(w => w.id === id);
@@ -42,7 +45,7 @@ export default {
 						win.zIndex = state.zIndexCounter++;
 						win.isMinimized = false;
 					} else
-						console.warn(`Window with id ${id} not found`);
+						logger.warn(`Window with id ${id} not found`);
 				},
 				closeWindow: (id: string) => {
 					state.windows = state.windows.filter(w => w.id !== id);
@@ -50,23 +53,23 @@ export default {
 				},
 				openWindow: (id: string, options?: LateWindowOptions) => {
 					if (state.windows.some(w => w.id === id)) {
-						$lwm.actions.focusWindow(id);
+						lwm.actions.focusWindow(id);
 						return;
 					}
 					state.windows.push({
 						id,
 						icon: options?.icon,
-						title: options?.title ?? $lwm.DefaultOptions.window!.title,
+						title: options?.title ?? lwm.DefaultOptions.window!.title,
 						content: options?.content,
 						isMaximized: options?.isMaximized ?? false,
 						isMinimized: options?.isMinimized ?? false,
-						position: options?.position ?? $lwm.DefaultOptions.window!.position,
-						size: options?.size ?? $lwm.DefaultOptions.window!.size,
+						position: options?.position ?? lwm.DefaultOptions.window!.position,
+						size: options?.size ?? lwm.DefaultOptions.window!.size,
 						closeable: options?.closeable ?? true,
 						moveable: options?.moveable ?? true,
 						maximizable: options?.maximizable ?? true,
 						minimizable: options?.minimizable ?? true,
-						zIndex: $lwm.DefaultOptions.manager!.initZIndex!,
+						zIndex: lwm.DefaultOptions.manager!.initZIndex!,
 					});
 					state.activeWindowId = id;
 				},
@@ -92,7 +95,7 @@ export default {
 							win.size = win.lastSize;
 						}
 					} else
-						console.warn(`Window with id ${id} not found`);
+						logger.warn(`Window with id ${id} not found`);
 				},
 				minimizeWindow(id: string) {
 					const win = state.windows.find(w => w.id === id);
@@ -106,7 +109,7 @@ export default {
 					if (win) {
 						win.position = pos;
 					} else
-						console.warn(`Window with id ${id} not found`);
+						logger.warn(`Window with id ${id} not found`);
 				}
 			},
 			DefaultOptions: readonly({
@@ -133,7 +136,7 @@ export default {
 			}),
 			State: readonly(state)
 		}
-		app.provide('$lwm', $lwm);
-		app.config.globalProperties.$lwm = $lwm;
+		app.provide('lwm', lwm);
+		app.config.globalProperties.$lwm = lwm;
 	}
 }
