@@ -24,7 +24,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "postbuild": "node --experimental-strip-types .bin/postbuild.ts"
+    "postbuild": "unrun .bin/postbuild.ts"
   },
   "keywords": [
     "vue",
@@ -46,6 +46,7 @@
     "tsdown": "^0.18.2",
     "typescript": "^5.9.3",
     "unplugin-vue": "^7.1.0",
+    "unrun": "^0.2.25",
     "vite": "^7.2.6",
     "vitepress": "^2.0.0-alpha.15",
     "vitepress-plugin-group-icons": "^1.6.5",
