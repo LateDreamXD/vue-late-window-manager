@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, inject, type DeepReadonly } from 'vue';
+import { computed, ref, type DeepReadonly } from 'vue';
+import { useLWM } from '..';
 import icons from '../icons';
 import type { LateWindowState } from '../types';
 
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
 const { window } = defineProps<{
 	window: DeepReadonly<LateWindowState>
@@ -23,10 +24,10 @@ const styleObject = computed(() => ({
 	display: window.isMinimized? 'none': 'flex'
 }));
 
-const isActive = computed(() => window.id === $lwm.State.activeWindowId);
+const isActive = computed(() => window.id === lwm.State.activeWindowId);
 
 const onMouseDown = (e: MouseEvent) => {
-	$lwm.actions.focusWindow(window.id);
+	lwm.actions.focusWindow(window.id);
 }
 
 const startDrag = (e: MouseEvent) => {
@@ -44,7 +45,7 @@ const onDrag = (e: MouseEvent) => {
 	if (!dragging.value) return;
 	let x = e.clientX - offset.value.x;
 	let y = e.clientY - offset.value.y;
-	$lwm.actions.updateWindowPos(window.id, { x, y });
+	lwm.actions.updateWindowPos(window.id, { x, y });
 }
 
 const stopDrag = () => {
@@ -53,16 +54,16 @@ const stopDrag = () => {
 	document.removeEventListener('mouseup', stopDrag);
 }
 
-const maximize = () => $lwm.actions.maximizeWindow(window.id);
-const minimize = () => $lwm.actions.minimizeWindow(window.id);
+const maximize = () => lwm.actions.maximizeWindow(window.id);
+const minimize = () => lwm.actions.minimizeWindow(window.id);
 const close = () => {
 	minimize();
-	setTimeout(() => $lwm.actions.closeWindow(window.id), 300);
+	setTimeout(() => lwm.actions.closeWindow(window.id), 300);
 };
 
 const onTouchStart = (e: TouchEvent) => {
 	if(e.touches.length > 1) return;
-	$lwm.actions.focusWindow(window.id);
+	lwm.actions.focusWindow(window.id);
 }
 
 const startTouchDrag = (e: TouchEvent) => {
@@ -83,7 +84,7 @@ const onTouchDrag = (e: TouchEvent) => {
 	const touch = e.touches[0];
 	let x = touch.clientX - offset.value.x;
 	let y = touch.clientY - offset.value.y;
-	$lwm.actions.updateWindowPos(window.id, { x, y });
+	lwm.actions.updateWindowPos(window.id, { x, y });
 }
 
 const stopTouchDrag = () => {
@@ -95,7 +96,7 @@ const stopTouchDrag = () => {
 
 <template>
 	<div :data-window-id="window.id" :class="{
-		[$lwm.DefaultOptions.manager!.customClass!.window!]: true, dragging,
+		[lwm.DefaultOptions.manager!.customClass!.window!]: true, dragging,
 		focused: isActive, minimized: window.isMinimized, maximized: window.isMaximized
 	}" :style="styleObject" @mousedown="onMouseDown" @touchstart="onTouchStart">
 		<div class="title-bar" @mousedown="startDrag" @touchstart="startTouchDrag">

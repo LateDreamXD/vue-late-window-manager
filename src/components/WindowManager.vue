@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue';
+import { computed } from 'vue';
+import { useLWM } from '..';
 
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
-const windows = computed(() => $lwm.State.windows);
+const windows = computed(() => lwm.State.windows);
 
 defineProps<{
 	/**
@@ -20,7 +21,7 @@ defineProps<{
 </script>
 
 <template>
-	<div :class="{ [$lwm.DefaultOptions.manager!.customClass!.manager!]: true, [customClass?.manager!]: customClass?.manager! }">
+	<div :class="{ [lwm.DefaultOptions.manager!.customClass!.manager!]: true, [customClass?.manager!]: customClass?.manager! }">
 		<late-window :class="{ [customClass?.window!]: customClass?.window! }" v-for="win in windows" :key="win.id" :window="win">
 			<template v-slot:default>
 				<div v-if="typeof win.content === 'string'">

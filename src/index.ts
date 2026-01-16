@@ -10,8 +10,10 @@ import type { UserOptions, LateWindowOptions, LateWindowState } from './types';
 const LateWindow = defineAsyncComponent(() => import('./components/Window.vue'));
 const LateWindowManager = defineAsyncComponent(() => import('./components/WindowManager.vue'));
 
+const useLateWindowManager = () => inject<LWM.Instance>('lwm');
+
 export { version } from '../package.json';
-export { LateWindow, LateWindowManager };
+export { LateWindow, LateWindowManager, useLateWindowManager, useLateWindowManager as useLWM };
 
 export default {
 	install(app: App, options?: UserOptions): void {
