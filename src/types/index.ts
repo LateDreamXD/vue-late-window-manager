@@ -55,7 +55,6 @@ declare module 'vue' {
 	interface ComponentCustomProperties {
 		/**
 		 * late window manager instance | late window 窗口管理器实例
-		 * @deprecated use `inject('$lwm')` instead | 请使用 `inject('$lwm')` 代替
 		 */
 		$lwm: LWM.Instance;
 

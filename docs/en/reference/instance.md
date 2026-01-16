@@ -29,8 +29,7 @@ const $lwm = inject('$lwm')
 
 :::
 
-2. ~~Use `app.config.globalProperties.$lwm` in Vue instance.~~
-<Badge type="warning" text="Deprecated" />  
+2. Use `app.config.globalProperties.$lwm` in Vue instance.
 <Badge type="danger" text="Not recommended" />
 
 ::: code-group

@@ -29,8 +29,7 @@ const $lwm = inject('$lwm')
 
 :::
 
-2. ~~在 Vue 实例中使用 `app.config.globalProperties.$lwm`。~~
-<Badge type="warning" text="已弃用" />  
+2. 在 Vue 实例中使用 `app.config.globalProperties.$lwm`。
 <Badge type="danger" text="不推荐" />
 
 ::: code-group
