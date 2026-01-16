@@ -1,7 +1,7 @@
 {
   "name": "vue-late-window-manager",
   "type": "module",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Late Window Manager for Vue3",
   "files": [
     "dist"
