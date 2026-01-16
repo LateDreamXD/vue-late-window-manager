@@ -1,14 +1,15 @@
 ---
-layout: page
+layout: false
 title: Window Manager Component Showcase
 ---
 
 <script setup lang="ts">
-import { inject, h } from 'vue';
+import { h } from 'vue';
+import { useLWM } from 'vue-late-window-manager';
 
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
-$lwm.actions.openWindow('ld', {
+lwm.actions.openWindow('ld', {
 	title: 'LateDreamXD',
 	icon: 'https://about.latedream.cn/avatar',
 	content: h('img', { src: 'https://about.latedream.cn/avatar', style: { width: '100%', height: '100%' } }),
@@ -21,7 +22,7 @@ $lwm.actions.openWindow('ld', {
 		y: 6
 	}
 });
-$lwm.actions.openWindow('test-window', {
+lwm.actions.openWindow('test-window', {
 	content: h('p', { style: { padding: '6px' } }, 'Hello Vue Late Window Manager!'),
 	size: {
 		width: 350,

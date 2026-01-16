@@ -55,13 +55,13 @@ app.mount('#app')
 
 ```vue [src/App.vue]
 <script setup lang="ts">
-import { inject } from 'vue';
+import { useLWM } from 'vue-late-window-manager'
 
 // 获取 LWM 实例
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
 // 打开一个测试窗口
-$lwm.actions.openWindow('test-window', {
+lwm.actions.openWindow('test-window', {
 	content: 'Hello Vue Late Window Manager!'
 });
 </script>

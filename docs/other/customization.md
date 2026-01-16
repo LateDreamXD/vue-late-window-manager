@@ -4,11 +4,11 @@ title: Customized Example
 ---
 
 <script setup lang="ts">
-import { inject } from 'vue';
+import { useLWM } from 'vue-late-window-manager'
 
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
-const open = () => $lwm.actions.openWindow('test-window', {
+const open = () => lwm.actions.openWindow('test-window', {
 	content: 'Hello Vue Late Window Manager!',
 	position: {
 		x: Math.floor((window.innerWidth - 400) / 2),
@@ -21,8 +21,8 @@ const open = () => $lwm.actions.openWindow('test-window', {
 });
 
 const reopen = () => {
-	if($lwm.State.windows['test-window'])
-		$lwm.actions.focusWindow('test-window');
+	if(lwm.State.windows['test-window'])
+		lwm.actions.focusWindow('test-window');
 	else open();
 }
 

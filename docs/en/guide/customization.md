@@ -64,7 +64,7 @@ You can customize the default style by overriding css variables.
 
 You also can write your own style throw stylesheet. For example:
 
-```scss [SCSS]
+```scss [custom.scss]
 /**
  * Custom style for example
  * Design by LateDream

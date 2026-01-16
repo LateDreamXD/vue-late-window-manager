@@ -2,54 +2,31 @@
 
 ## Get Instance {#get-instance}
 
-You have two ways to get Vue Late Window Manager instance:
-
-1. Use `inject('$lwm')` in Vue component.
-
 ::: code-group
 
-```vue [Typescript]
-<script setup lang="ts">
-import { inject } from 'vue'
-
-const $lwm = inject<LWM.Instance>('$lwm')
-</script>
-...
-```
-
-```vue [Javascript]
+```vue [Compostion API]
 <script setup>
-import { inject } from 'vue'
-
-/** @type {LWM.Instance} */
-const $lwm = inject('$lwm')
+import { useLWM } from "vue-late-window-manager";
+const lwm = useLWM();
 </script>
-...
 ```
 
-:::
-
-2. Use `app.config.globalProperties.$lwm` in Vue instance.
-<Badge type="danger" text="Not recommended" />
-
-::: code-group
-
-```vue [Typescript]
-<script setup lang="ts">
-import { getCurrentInstance } from 'vue'
-
-const $lwm = getCurrentInstance()!.appContext.app.config.globalProperties.$lwm;
+```vue [Options API]
+<script>
+export default {
+  methods: {
+    openWindow() {
+      this.$lwm.actions.openWindow( /* ... */ );
+    }
+  }
+};
 </script>
-...
 ```
 
-```vue [Javascript]
-<script setup>
-import { getCurrentInstance } from 'vue'
-
-const $lwm = getCurrentInstance().appContext.app.config.globalProperties.$lwm;
-</script>
-...
+```vue [Template]
+<template>
+  <button @click="$lwm.actions.openWindow('a')">open a window</button>
+</template>
 ```
 
 :::

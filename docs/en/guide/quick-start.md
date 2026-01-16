@@ -55,13 +55,13 @@ Modify your `App.vue` file like this:
 
 ```vue [src/App.vue]
 <script setup lang="ts">
-import { inject } from 'vue';
+import { useLWM } from 'vue-late-window-manager'
 
 // get LWM instance
-const $lwm = inject<LWM.Instance>('$lwm')!;
+const lwm = useLWM();
 
 // open a test window
-$lwm.actions.openWindow('test-window', {
+lwm.actions.openWindow('test-window', {
 	content: 'Hello Vue Late Window Manager!'
 });
 </script>
