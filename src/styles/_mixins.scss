@@ -125,12 +125,22 @@
 				&.danger {
 					color: var(--dream-text-color-hover);
 					background-color: var(--dream-error-color);
+
+					&[disabled] {
+						background-color: transparent;
+					}
 				}
 			}
 
 			&:active {
 				color: var(--dream-text-color-active);
 				background-color: initial;
+			}
+
+			&[disabled] {
+				opacity: 0.5;
+				cursor: not-allowed;
+				background-color: transparent;
 			}
 		}
 	}

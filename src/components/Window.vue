@@ -54,12 +54,12 @@ const stopDrag = () => {
 	document.removeEventListener('mouseup', stopDrag);
 }
 
-const maximize = () => lwm.actions.maximizeWindow(window.id);
-const minimize = () => lwm.actions.minimizeWindow(window.id);
-const close = () => {
-	minimize();
-	setTimeout(() => lwm.actions.closeWindow(window.id), 300);
-};
+const maximize = () => window.maximizable && lwm.actions.maximizeWindow(window.id);
+const minimize = () => window.minimizable && lwm.actions.minimizeWindow(window.id);
+const close = () => window.closeable && (
+	minimize(),
+	setTimeout(() => lwm.actions.closeWindow(window.id), 300)
+);
 
 const onTouchStart = (e: TouchEvent) => {
 	if(e.touches.length > 1) return;
@@ -102,17 +102,17 @@ const stopTouchDrag = () => {
 		<div class="title-bar" @mousedown="startDrag" @touchstart="startTouchDrag">
 			<span class="title">
 				<img class="icon" v-if="window.icon" :src="window.icon" alt="window.title" />
-				{{ window.title }}
+				<span class="content" v-text="window.title" />
 			</span>
 			<div class="controls">
-				<button class="dream-button icon" @click="minimize" title="Minimize"
-						aria-label="Minimize" v-html="icons['window-minimize']"></button>
-				<button class="dream-button icon" @click="maximize"
+				<button class="dream-button icon" :disabled="!window.minimizable" @click="minimize"
+					title="Minimize" aria-label="Minimize" v-html="icons['window-minimize']" />
+				<button class="dream-button icon" :disabled="!window.maximizable" @click="maximize"
 						:title="window.isMaximized? 'Restore': 'Maximize'"
 						:aria-label="window.isMaximized? 'Restore': 'Maximize'"
-						v-html="window.isMaximized? icons.compress: icons.expand"></button>
-				<button class="dream-button danger icon" @click="close" title="Close"
-						aria-label="Close" v-html="icons.xmark"></button>
+						v-html="window.isMaximized? icons.compress: icons.expand" />
+				<button class="dream-button danger icon" :disabled="!window.closeable"
+					@click="close" title="Close" aria-label="Close" v-html="icons.xmark" />
 			</div>
 		</div>
 		<div class="workspace">
