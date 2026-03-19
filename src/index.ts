@@ -68,6 +68,7 @@ export default {
 						position: options?.position ?? lwm.DefaultOptions.window!.position,
 						size: options?.size ?? lwm.DefaultOptions.window!.size,
 						closeable: options?.closeable ?? true,
+						controls: options?.controls,
 						moveable: options?.moveable ?? true,
 						maximizable: options?.maximizable ?? true,
 						minimizable: options?.minimizable ?? true,

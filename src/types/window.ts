@@ -42,13 +42,15 @@ export declare type LateWindowOptions = {
 	maximizable?: boolean;
 	/** window minimizable state | 窗口能否最小化 */
 	minimizable?: boolean;
+	/** custom controls | 自定义窗口控件 */
+	controls?: VNode[];
 }
 // #endregion window-options
 
 // #region window-state
 /** late window state | late window 窗口状态 */
 export declare type LateWindowState = LateWindowOptions & {
-	/** 
+	/**
 	 * window unique id | 窗口唯一标识
 	 * @requires
 	 */

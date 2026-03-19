@@ -9,6 +9,7 @@ const lwm = useLWM();
 const { window } = defineProps<{
 	window: DeepReadonly<LateWindowState>
 }>();
+console.log(window.controls)
 
 const dragging = ref(false);
 const offset = ref({ x: 0, y: 0 });
@@ -105,6 +106,9 @@ const stopTouchDrag = () => {
 				<span class="content" v-text="window.title" />
 			</span>
 			<div class="controls">
+				<template v-if="window.controls && window.controls.length > 0">
+					<component v-for="control in window.controls" :key="control" :is="control" />
+				</template>
 				<button class="dream-button icon" :disabled="!window.minimizable" @click="minimize"
 					title="Minimize" aria-label="Minimize" v-html="icons['window-minimize']" />
 				<button class="dream-button icon" :disabled="!window.maximizable" @click="maximize"

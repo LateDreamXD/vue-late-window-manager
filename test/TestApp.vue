@@ -21,7 +21,14 @@ lwm.actions.openWindow('ld', {
 	size: {
 		width: 400,
 		height: 400
-	}
+	},
+	closeable: false,
+	minimizable: false,
+	maximizable: false,
+	moveable: false,
+	controls: [
+		h('button', { class: 'dream-button icon', disabled: true }, 'test'),
+	]
 });
 </script>
 
