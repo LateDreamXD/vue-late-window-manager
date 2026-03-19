@@ -12,7 +12,8 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "browser": "./dist/index.umd.js"
     },
     "./package.json": "./package.json",
     "./style": "./dist/styles/default.css",

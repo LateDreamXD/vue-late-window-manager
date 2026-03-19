@@ -9,7 +9,12 @@ export default defineConfig([
 			'cjs': {
 				dts: false
 			},
-			'esm': {}
+			'esm': {},
+			umd: {
+				outputOptions: {
+					name: 'VueLateWindowManager'
+				}
+			}
 		},
 		minify: true,
 		platform: 'neutral',
