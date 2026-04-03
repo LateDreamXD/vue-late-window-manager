@@ -9,7 +9,6 @@ const lwm = useLWM();
 const { window } = defineProps<{
 	window: DeepReadonly<LateWindowState>
 }>();
-console.log(window.controls)
 
 const dragging = ref(false);
 const offset = ref({ x: 0, y: 0 });
